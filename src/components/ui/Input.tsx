@@ -1,3 +1,4 @@
+// src/components/ui/Input.tsx
 type Props = React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function Input(props: Props) {

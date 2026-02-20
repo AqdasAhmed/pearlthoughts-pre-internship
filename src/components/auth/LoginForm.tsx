@@ -1,3 +1,5 @@
+// src/components/auth/LoginForm.tsx
+
 "use client";
 
 import Input from "../ui/Input";
@@ -6,8 +8,16 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "./logo.png";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
 
 export default function LoginForm() {
+    const router = useRouter();
+    const { login } = useAuth();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     return (
         <div className="bg-white shadow-xl rounded-2xl p-8 w-96 space-y-5">
 
@@ -16,9 +26,9 @@ export default function LoginForm() {
                 <Image
                     src={logo}
                     alt="logo"
-                    width={60}
-                    height={60}
-                    className="rounded-xl"
+                    width={80}
+                    height={80}
+                    className="rounded-sm"
                 />
             </div>
 
@@ -29,14 +39,22 @@ export default function LoginForm() {
 
             {/* Email */}
             <div className="space-y-2">
-                <label className="text-gray-500 text-sm">Email</label>
-                <Input type="email" placeholder="Enter your email" />
+                <label className="text-gray-500 text-sm">Mobile/Email</label>
+                <Input
+                    type="email"
+                    placeholder="Login with Mobile or Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                />
             </div>
 
             {/* Password */}
             <div className="space-y-2">
                 <label className="text-gray-500 text-sm">Password</label>
-                <Input type="password" placeholder="Enter your password" />
+                <Input
+                    type="password"
+                    placeholder="Enter your password"
+                    onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
 
             {/* Remember + Forgot */}
@@ -52,12 +70,20 @@ export default function LoginForm() {
             </div>
 
             {/* Login */}
-            <Button>Sign in</Button>
+            <Button
+                onClick={() => {
+                    const success = login(email, password);
+                    if (success) router.push("/dashboard");
+                    else alert("Invalid credentials");
+                }}
+            >
+                Sign in
+            </Button>
 
             {/* Divider */}
             <div className="flex items-center gap-3">
                 <div className="h-px bg-gray-300 w-full" />
-                <span className="text-gray-400 text-sm">or</span>
+                <span className="text-gray-400 text-xs">Or</span>
                 <div className="h-px bg-gray-300 w-full" />
             </div>
 
@@ -68,7 +94,7 @@ export default function LoginForm() {
             </button>
             <div className="text-gray-500 flex items-center justify-center text-sm">
                 Don't have an account?
-                <Link href="#" className="text-blue-600 hover:underline ml-1">
+                <Link href="/signup" className="text-blue-600 hover:underline ml-1">
                     Sign Up
                 </Link>
             </div>

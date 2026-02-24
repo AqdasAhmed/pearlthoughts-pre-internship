@@ -1,4 +1,146 @@
 [
-  { "id": 1, "name": "Dr. Sharma", "specialization": "Cardiologist" },
-  { "id": 2, "name": "Dr. Khan", "specialization": "Dermatologist" }
+  {
+    "id": 1,
+    "name": "Dr. Sharma",
+    "specialization": "Cardiologist",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/men/1.jpg",
+    "rating": 4.5,
+    "reviews": 120,
+    "university": "AIIMS Delhi",
+    "experience": 12
+  },
+  {
+    "id": 2,
+    "name": "Dr. Khan",
+    "specialization": "Dermatologist",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/men/2.jpg",
+    "rating": 4.2,
+    "reviews": 85,
+    "university": "King George's Medical University",
+    "experience": 8
+  },
+  {
+    "id": 3,
+    "name": "Dr. Patel",
+    "specialization": "Pediatrician",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/women/1.jpg",
+    "rating": 4.8,
+    "reviews": 200,
+    "university": "JIPMER Puducherry",
+    "experience": 15
+  },
+  {
+    "id": 4,
+    "name": "Dr. Lee",
+    "specialization": "Neurologist",
+    "status": "Unavailable Today",
+    "color": "red",
+    "image": "https://randomuser.me/api/portraits/men/3.jpg",
+    "rating": 4.0,
+    "reviews": 60,
+    "university": "CMC Vellore",
+    "experience": 10
+  },
+  {
+    "id": 5,
+    "name": "Dr. Garcia",
+    "specialization": "Orthopedic Surgeon",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/women/2.jpg",
+    "rating": 4.6,
+    "reviews": 150,
+    "university": "Stanford University",
+    "experience": 14
+  },
+  {
+    "id": 6,
+    "name": "Dr. Ahmed",
+    "specialization": "Psychiatrist",
+    "status": "Unavailable Today",
+    "color": "red",
+    "image": "https://randomuser.me/api/portraits/men/4.jpg",
+    "rating": 4.3,
+    "reviews": 90,
+    "university": "Maulana Azad Medical College",
+    "experience": 9
+  },
+  {
+    "id": 7,
+    "name": "Dr. Mehta",
+    "specialization": "Gynecologist",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/women/3.jpg",
+    "rating": 4.7,
+    "reviews": 110,
+    "university": "PGIMER Chandigarh",
+    "experience": 13
+  },
+  {
+    "id": 8,
+    "name": "Dr. Roy",
+    "specialization": "Oncologist",
+    "status": "Unavailable Today",
+    "color": "red",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg",
+    "rating": 4.1,
+    "reviews": 70,
+    "university": "Tata Memorial Hospital",
+    "experience": 11
+  },
+  {
+    "id": 9,
+    "name": "Dr. Fernandes",
+    "specialization": "Endocrinologist",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/women/4.jpg",
+    "rating": 4.4,
+    "reviews": 95,
+    "university": "Manipal Academy of Higher Education",
+    "experience": 7
+  },
+  {
+    "id": 10,
+    "name": "Dr. Iyer",
+    "specialization": "Gastroenterologist",
+    "status": "Unavailable Today",
+    "color": "red",
+    "image": "https://randomuser.me/api/portraits/men/6.jpg",
+    "rating": 4.0,
+    "reviews": 80,
+    "university": "Madras Medical College",
+    "experience": 10
+  },
+  {
+    "id": 11,
+    "name": "Dr. Kapoor",
+    "specialization": "Ophthalmologist",
+    "status": "Available Today",
+    "color": "green",
+    "image": "https://randomuser.me/api/portraits/women/5.jpg",
+    "rating": 4.5,
+    "reviews": 130,
+    "university": "Aravind Eye Hospital",
+    "experience": 12
+  },
+  {
+    "id": 12,
+    "name": "Dr. Thomas",
+    "specialization": "Rheumatologist",
+    "status": "Unavailable Today",
+    "color": "red",
+    "image": "https://randomuser.me/api/portraits/men/7.jpg",
+    "rating": 4.2,
+    "reviews": 75,
+    "university": "Christian Medical College Ludhiana",
+    "experience": 9
+  }
 ]

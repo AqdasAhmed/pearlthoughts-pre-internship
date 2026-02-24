@@ -17,6 +17,7 @@ export default function LoginForm() {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     return (
         <div className="bg-white shadow-xl rounded-2xl p-8 w-96 space-y-5">
@@ -39,11 +40,12 @@ export default function LoginForm() {
 
             {/* Email */}
             <div className="space-y-2">
-                <label className="text-gray-500 text-sm">Mobile/Email</label>
+                <label className="text-gray-500 text-sm">Email</label>
                 <Input
                     type="email"
-                    placeholder="Login with Mobile or Email"
+                    placeholder="Enter your Email"
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                 />
             </div>
 
@@ -54,7 +56,9 @@ export default function LoginForm() {
                     type="password"
                     placeholder="Enter your password"
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                 />
+                {error && <p className="text-red-500 text-sm">{error}</p>}
             </div>
 
             {/* Remember + Forgot */}
@@ -72,9 +76,14 @@ export default function LoginForm() {
             {/* Login */}
             <Button
                 onClick={() => {
+                    setError("");
+                    if(!email || !password) {
+                        setError("Please fill in all fields");
+                        return;
+                    }
                     const success = login(email, password);
                     if (success) router.push("/dashboard");
-                    else alert("Invalid credentials");
+                    else setError("Invalid email or password");
                 }}
             >
                 Sign in

@@ -7,12 +7,14 @@ const AuthContext = createContext<any>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem("session");
+    const stored = localStorage.getItem("user");
     if (stored) setUser(JSON.parse(stored));
+    setLoading(false);
   }, []);
-
+  
   const signup = (email: string, password: string) => {
     const newUser = { email, password, role: "patient" };
 
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

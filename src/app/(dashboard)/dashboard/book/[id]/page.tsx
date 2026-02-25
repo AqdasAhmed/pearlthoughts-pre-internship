@@ -110,22 +110,26 @@ export default function BookAppointment() {
             return;
         }
 
+        if (isPastSlot(selectedDate, selectedTime)) {
+            alert("This time slot has already passed");
+            return;
+        }
+        
         const booking = {
+            id: crypto.randomUUID(),
             doctor: doctor.name,
             specialization: doctor.specialization,
             date: selectedDate,
             time: selectedTime,
             mode,
             problem,
-            patient: {
-                name: patientName,
-                age,
-                gender,
-                phone,
-                bloodGroup,
-                conditions,
-                forSomeoneElse,
-            },
+            patientName,
+            age,
+            gender,
+            phone,
+            bloodGroup,
+            conditions,
+            status: "upcoming"
         };
 
         const existing = JSON.parse(localStorage.getItem("appointments") || "[]");
@@ -141,6 +145,18 @@ export default function BookAppointment() {
     const isSelectedSlotUnavailable =
         selectedDate && selectedTime &&
         isSlotUnavailable(selectedDate, selectedTime);
+
+    const isPastSlot = (date: string, time: string) => {
+        const now = new Date();
+
+        const selected = new Date(date + "T" + time);
+
+        return selected.getTime() <= now.getTime();
+    };
+
+    const visibleSlots = selectedDate
+        ? timeSlots.filter((slot) => !isPastSlot(selectedDate, slot))
+        : [];
 
     return (
         <div className="max-w-xl mx-auto space-y-6">
@@ -191,7 +207,7 @@ export default function BookAppointment() {
                     ) : (
                         <>
                             <div className="flex gap-2 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden">
-                                {timeSlots.map(slot => {
+                                {visibleSlots.map(slot => {
                                     const disabled = isSlotUnavailable(selectedDate, slot);
 
                                     return (
@@ -210,6 +226,11 @@ export default function BookAppointment() {
                                         </button>
                                     );
                                 })}
+                                {visibleSlots.length === 0 && (
+                                    <p className="text-red-500 text-sm">
+                                        No available time slots remaining for this day
+                                    </p>
+                                )}
                             </div>
                             {!selectedTime ? (
                                 <p className="text-gray-400 text-sm">Please select a time slot</p>
@@ -319,8 +340,8 @@ export default function BookAppointment() {
                                             required
                                         >
                                             <option>In-Person</option>
-                                            <option>Online</option>
-                                            <option>Video Consultation</option>
+                                            <option>Audio Call</option>
+                                            <option>Video Call</option>
                                             <option>Home Visit</option>
                                         </select>
                                     </div>
@@ -347,16 +368,15 @@ export default function BookAppointment() {
                 {/* Confirm */}
                 <button
                     onClick={handleBooking}
-                    className={`w-full py-2 rounded-lg ${
-                            selectedDate &&
-                            selectedTime &&
-                            patientName &&
-                            age &&
-                            phone &&
-                            phone.length >= 10 &&
-                            mode
-                            ? "bg-[#46c2de] text-white"
-                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    className={`w-full py-2 rounded-lg ${selectedDate &&
+                        selectedTime &&
+                        patientName &&
+                        age &&
+                        phone &&
+                        phone.length >= 10 &&
+                        mode
+                        ? "bg-[#46c2de] text-white"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`} disabled={
                             !selectedDate ||
                             !selectedTime ||

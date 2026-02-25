@@ -79,7 +79,7 @@ export default function DashboardHome() {
 
   return (
 
-    <div className="flex flex-col gap-4 overflow-x-auto max-w-7xl snap-x snap-mandatory pb-2 scrollbar-hide">
+    <div className="flex flex-col gap-4 max-w-7xl snap-x snap-mandatory pb-2 scrollbar-hide">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
         Welcome to Schedula
       </h1>
